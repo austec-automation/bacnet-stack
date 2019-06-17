@@ -75,7 +75,10 @@ my $libDir;
 my $incDir1;
 my $incDir2;
 my $incDir3;
+my $port;
 BEGIN {
+    $port = "linux";
+    $port = "win32" if($^O eq "MSWin32");
     # the Perl source file is in the same directory as in the InlineC file
     # this path should not contain any spaces
     $relSourcePath = File::Spec->rel2abs(dirname($0));
@@ -87,6 +90,7 @@ BEGIN {
     # all Inline C sources shall be contained in ./.Inline
     push @dirs, ".Inline";
     $inlineBuildDir = File::Spec->catdir(@dirs);
+    mkdir $inlineBuildDir;
     pop @dirs;
 
     # to properly link, need to reference ./../../lib
@@ -109,16 +113,16 @@ BEGIN {
     pop @dirs;
 
     # TODO: This should be done in a more universal way
-    # to properly build Win32 ports, need to refrence ./../../ports/win32
+    # to properly build Win32 ports, need to refrence ./../../ports/$arch
     push @dirs, "ports";
-    push @dirs, "win32";
+    push @dirs, $port;
     $incDir3 = File::Spec->catdir(@dirs);
 }
 
 use Inline (
     C => Config => 
-        LIBS      => "-L$libDir -lbacnet -liphlpapi",
-        INC       => ["-I$incDir1", "-I$incDir2", "-I$incDir3"],
+        LIBS      => "-L$incDir2 -ldevice-client -L$libDir -lbacnet -liphlpapi",
+        INC       => "-I$incDir1 -I$incDir2 -I$incDir3",
         DIRECTORY => $inlineBuildDir,
 );
 
