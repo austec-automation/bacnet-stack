@@ -121,7 +121,7 @@ BEGIN {
 
 use Inline (
     C => Config => 
-        LIBS      => "-L$incDir2 -ldevice-client -L$libDir -lbacnet -liphlpapi",
+        LIBS      => "-L$libDir -ldevice-client -lbacnet -liphlpapi",
         INC       => "-I$incDir1 -I$incDir2 -I$incDir3",
         DIRECTORY => $inlineBuildDir,
 );

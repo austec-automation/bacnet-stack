@@ -13,9 +13,10 @@ The BACnet Scriptable (using Perl) Tool.
 
 * Currently, the tool only tries linux and win32 port, but should be easily modifiable
   for any port  build.
-* For linux, a device-client lib is needed (for a client implementation)
-  cd ../demo/object;
-  ar crf libdevice-client.a device-client.o  
+* For linux, a device-client lib is needed (for a client implementation), put it in the
+  lib folder so we don't have to go hunting
+  cd ./demo/object;
+  ar crf ../../lib/libdevice-client.a ./device-client.o  
 * This tool has to be run from a path without any spaces. The presence of the
   .Inline directory is required.
 * Run the tool without any arguments to see usage instructions
