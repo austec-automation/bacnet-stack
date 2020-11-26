@@ -124,6 +124,8 @@ use Inline (
         LIBS      => "-L$libDir -ldevice-client -lbacnet -liphlpapi",
         INC       => "-I$incDir1 -I$incDir2 -I$incDir3",
         DIRECTORY => $inlineBuildDir,
+	ccflagsex => "-DBACAPP_PRINT_ENABLED",
+	#	lddlflags => "-fPIC -shared"
 );
 
 # this is the C source file for interfacing to the library. Yes, this could be
