@@ -497,11 +497,11 @@ static void Wait_For_Answer_Or_Timeout(
 /****************************************************/
 /* This is the most fundamental setup needed to start communication  */
 /****************************************************/
-void BacnetPrepareComm(
+void BacnetPrepareComm( int deviceInstanceNumber 
     )
 {
     /* setup my info */
-    Device_Set_Object_Instance_Number(BACNET_MAX_INSTANCE);
+    Device_Set_Object_Instance_Number(deviceInstanceNumber);
     address_init();
     Init_Service_Handlers();
     dlenv_init();
