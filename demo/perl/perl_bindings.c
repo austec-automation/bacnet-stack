@@ -100,9 +100,9 @@ static void My_Error_Handler(
     if (address_match(&Target_Address, src) &&
         (invoke_id == Request_Invoke_ID)) {
         char msg[MAX_ERROR_STRING];
-        sprintf(msg, "BACnet Error: %s: %s",
-            bactext_error_class_name((int) error_class),
-            bactext_error_code_name((int) error_code));
+        sprintf(msg, "BACnet Error: %d: %d",
+            (int) error_class,
+            (int) error_code);
         LogError(msg);
     }
 }
@@ -223,10 +223,10 @@ void rpm_ack_extract_data(
             } else {
                 /* AccessError */
                 sprintf(ackString, "BACnet Error: %s: %s",
-                    bactext_error_class_name((int) listOfProperties->
-                        error.error_class),
-                    bactext_error_code_name((int) listOfProperties->
-                        error.error_code));
+                    (int) listOfProperties->
+                        error.error_class,
+                    (int) listOfProperties->
+                        error.error_code);
                 LogError(ackString);
             }
             listOfProperties = listOfProperties->next;
